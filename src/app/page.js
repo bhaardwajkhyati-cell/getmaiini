@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -23,9 +24,9 @@ export default function Home() {
       {/* Navbar */}
       <nav className="relative z-10 flex justify-between items-center px-8 py-4 border-b border-green-900">
         <span className="text-xl font-medium text-green-400">GetMaini</span>
-        <button className="bg-green-700 hover:bg-green-600 text-white px-5 py-2 rounded-lg text-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]">
+        <Link href = "/audit"><button className="bg-green-700 hover:bg-green-600 text-white px-5 py-2 rounded-lg text-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]">
           Audit my spend ↗
-        </button>
+        </button></Link>
       </nav>
 
       {/* Hero Section */}
@@ -41,9 +42,9 @@ export default function Home() {
           Most startups overpay on AI tools without realising it. Get a free
           2-minute audit — see exactly what to cut, downgrade, or switch.
         </p>
-        <button className="bg-green-700 hover:bg-green-600 text-white px-10 py-4 rounded-lg text-base font-medium transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.7)]">
+        <Link href = "/audit"><button className="bg-green-700 hover:bg-green-600 text-white px-10 py-4 rounded-lg text-base font-medium transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.7)]">
           Audit my AI spend — it's free ↗
-        </button>
+        </button></Link>
         <p className="text-xs text-green-900 mt-4">
           No signup required · Results in under 2 minutes
         </p>
@@ -101,9 +102,9 @@ export default function Home() {
       <section className="relative z-10 px-8 py-28 text-center border-t border-green-900/40">
         <h2 className="text-3xl font-medium text-white mb-4">Stop guessing. Start saving.</h2>
         <p className="text-sm text-green-800 mb-8">Free forever. No account needed. Takes 2 minutes.</p>
-        <button className="bg-green-700 hover:bg-green-600 text-white px-10 py-4 rounded-lg text-base font-medium transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.7)]">
+        <Link href= "audit"><button className="bg-green-700 hover:bg-green-600 text-white px-10 py-4 rounded-lg text-base font-medium transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.7)]">
           Run my free audit ↗
-        </button>
+        </button></Link>
       </section>
 
       {/* Footer */}
