@@ -4,11 +4,30 @@ import Link from "next/link";
 
 export default function Results() {
   const [audit, setAudit] = useState(null);
+  const [email, setEmail] = useState("");
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem("auditResult");
     if (stored) setAudit(JSON.parse(stored));
   }, []);
+
+  async function sendReport() {
+    if (!email) return;
+    setSending(true);
+    try {
+      await fetch("/api/send-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, audit }),
+      });
+      setSent(true);
+    } catch (e) {
+      console.error(e);
+    }
+    setSending(false);
+  }
 
   if (!audit) return (
     <main className="min-h-screen bg-[#07071a] flex items-center justify-center">
@@ -42,7 +61,7 @@ export default function Results() {
           <span className="text-xl font-medium text-green-400 cursor-pointer">GetMaini</span>
         </Link>
         <Link href="/audit">
-          <button className="text-sm text-green-700 hover:text-green-400 transition-colors">← Edit audit</button>
+          <button className="text-sm text-green-400 hover:text-green-300 transition-colors">← Edit audit</button>
         </Link>
       </nav>
 
@@ -50,12 +69,12 @@ export default function Results() {
 
         {/* Hero savings */}
         <div className="text-center mb-12">
-          <p className="text-xs text-green-700 uppercase tracking-widest mb-3">Your potential savings</p>
+          <p className="text-sm text-green-400 uppercase tracking-widest mb-3">Your potential savings</p>
           <div className="text-6xl font-medium text-green-400 mb-2">
             ${audit.totalSavings}<span className="text-2xl">/mo</span>
           </div>
-          <div className="text-lg text-green-700">${audit.totalAnnualSavings} saved per year</div>
-          <div className="text-sm text-green-900 mt-2">Current spend: ${audit.totalCurrentSpend}/mo</div>
+          <div className="text-lg text-green-400">${audit.totalAnnualSavings} saved per year</div>
+          <div className="text-sm text-green-400 mt-2">Current spend: ${audit.totalCurrentSpend}/mo</div>
         </div>
 
         {/* Credex CTA for high savings */}
@@ -68,11 +87,11 @@ export default function Results() {
             marginBottom: "2rem",
             textAlign: "center",
           }}>
-            <p className="text-xs text-green-500 uppercase tracking-widest mb-2">💰 High savings detected</p>
+            <p className="text-sm text-green-500 uppercase tracking-widest mb-2">💰 High savings detected</p>
             <h3 className="text-lg font-medium text-white mb-2">You're leaving ${audit.totalSavings}/mo on the table</h3>
-            <p className="text-sm text-green-700 mb-4">Credex can get you the same AI tools at up to 40% off retail price.</p>
+            <p className="text-sm text-green-400 mb-4">Credex can get you the same AI tools at up to 40% off retail price.</p>
             <a href="https://credex.rocks" target="_blank" rel="noopener noreferrer">
-              <button className="bg-green-700 hover:bg-green-600 text-white px-8 py-3 rounded-lg text-sm font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]">
+              <button className="bg-green-700 hover:bg-green-600 text-white px-8 py-3 rounded-lg text-base font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]">
                 Book a free Credex consultation ↗
               </button>
             </a>
@@ -81,7 +100,7 @@ export default function Results() {
 
         {/* Per tool breakdown */}
         <div className="mb-8">
-          <p className="text-xs text-green-700 uppercase tracking-widest mb-4">Per-tool breakdown</p>
+          <p className="text-sm text-green-400 uppercase tracking-widest mb-4">Per-tool breakdown</p>
           <div className="flex flex-col gap-4">
             {audit.results.map((tool, index) => (
               <div key={index} style={{
@@ -92,19 +111,19 @@ export default function Results() {
               }}>
                 <div className="flex justify-between items-center mb-2">
                   <div>
-                    <span className="text-sm font-medium text-white">{tool.name}</span>
-                    <span className="text-xs text-green-800 ml-2">{tool.plan} · {tool.seats} seat(s)</span>
+                    <span className="text-base font-medium text-white">{tool.name}</span>
+                    <span className="text-sm text-green-500 ml-2">{tool.plan} · {tool.seats} seat(s)</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm text-green-700">${tool.currentSpend}/mo</div>
+                    <div className="text-sm text-green-400">${tool.currentSpend}/mo</div>
                     {tool.savings > 0 && (
-                      <div className="text-xs text-green-400">Save ${tool.savings}/mo</div>
+                      <div className="text-sm text-green-400">Save ${tool.savings}/mo</div>
                     )}
                   </div>
                 </div>
-                <div className={`text-xs mt-2 px-3 py-2 rounded-lg ${
+                <div className={`text-sm mt-2 px-3 py-2 rounded-lg ${
                   tool.status === "optimal"
-                    ? "bg-green-900/20 text-green-700"
+                    ? "bg-green-900/20 text-green-400"
                     : tool.status === "warning"
                     ? "bg-yellow-900/20 text-yellow-500"
                     : "bg-green-900/30 text-green-400"
@@ -116,6 +135,24 @@ export default function Results() {
           </div>
         </div>
 
+
+        {/* Credex branding — always shown */}
+        <div style={{
+          background: "rgba(34,197,94,0.03)",
+          border: "1px solid rgba(34,197,94,0.15)",
+          borderRadius: "1rem",
+          padding: "1.5rem",
+          textAlign: "center",
+          marginBottom: "1.5rem",
+        }}>
+          <p className="text-sm text-green-500 mb-1">Powered by Credex</p>
+          <p className="text-sm text-green-400 mb-3">Credex sells discounted AI credits — Cursor, Claude, ChatGPT and more — at up to 40% off retail.</p>
+          <a href="https://credex.rocks" target="_blank" rel="noopener noreferrer"
+            className="text-sm text-green-400 underline hover:text-green-300 transition-colors">
+            Learn more at credex.rocks ↗
+          </a>
+        </div>
+
         {/* Email capture */}
         <div style={{
           background: "rgba(255,255,255,0.02)",
@@ -124,41 +161,32 @@ export default function Results() {
           padding: "1.5rem",
           marginBottom: "1.5rem",
         }}>
-          <h3 className="text-sm font-medium text-white mb-1">Get this report in your inbox</h3>
-          <p className="text-xs text-green-800 mb-4">We'll email you the full audit and notify you when new savings apply to your stack.</p>
+          <h3 className="text-base font-medium text-white mb-1">Get this report in your inbox</h3>
+          <p className="text-sm text-green-400 mb-4">We'll email you the full audit and notify you when new savings apply to your stack.</p>
           <div className="flex gap-2">
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="you@company.com"
-              className="flex-1 bg-white/[0.05] border border-green-500/60 rounded-lg px-3 py-2 text-sm text-white placeholder-green-900 focus:outline-none focus:border-green-400"
+              className="flex-1 bg-white/[0.05] border border-green-500/60 rounded-lg px-3 py-2 text-base text-white placeholder-green-900 focus:outline-none focus:border-green-400"
             />
-            <button className="bg-green-700 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,197,94,0.5)]">
-              Send report
+            <button
+              onClick={sendReport}
+              disabled={sending || sent}
+              className="bg-green-700 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-base transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,197,94,0.5)] disabled:opacity-50"
+            >
+              {sent ? "Sent ✓" : sending ? "Sending..." : "Send report"}
             </button>
           </div>
         </div>
 
-        {/* Not high savings message */}
-        {!audit.isHighSavings && audit.totalSavings === 0 && (
-          <div style={{
-            background: "rgba(255,255,255,0.02)",
-            border: "1px solid rgba(34,197,94,0.1)",
-            borderRadius: "1rem",
-            padding: "1.25rem",
-            textAlign: "center",
-            marginBottom: "1.5rem",
-          }}>
-            <p className="text-sm text-green-600">✦ You're spending well on your current stack.</p>
-            <p className="text-xs text-green-900 mt-1">Sign up to get notified when new optimizations apply to your tools.</p>
-          </div>
-        )}
-
         {/* Share URL */}
         <div className="flex items-center gap-3 bg-white/[0.02] border border-green-900/40 rounded-lg px-4 py-3">
-          <span className="text-xs text-green-800 font-mono flex-1">getmaiini.vercel.app/audit</span>
+          <span className="text-sm text-green-500 font-mono flex-1">getmaiini.vercel.app/audit</span>
           <button
             onClick={() => navigator.clipboard.writeText("getmaiini.vercel.app/audit")}
-            className="text-xs text-green-500 border border-green-800 px-3 py-1 rounded hover:border-green-500 transition-colors"
+            className="text-sm text-green-500 border border-green-800 px-3 py-1 rounded hover:border-green-500 transition-colors"
           >
             Copy link
           </button>
