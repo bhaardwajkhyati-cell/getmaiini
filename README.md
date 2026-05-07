@@ -1,1 +1,1 @@
-# getmaiini.com
+# getmaiini
