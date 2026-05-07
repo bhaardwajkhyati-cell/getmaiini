@@ -16,7 +16,7 @@ as important as the code itself.
 
 ## Day 2 — 2026-05-07
 
-**Hours worked:** 6
+**Hours worked:** 4.5
 
 **What I did:** Built the core pages of GetMaini. Created the galaxy-themed landing page with animated stars, green glow effects and floating card animations. Built the full audit form with tool selection dropdowns, custom +/− seat counters, team size input and use case selector. Created the audit engine logic in auditEngine.js that calculates savings based on plan fit, seat count vs team size, and tool overlap. Built the results page showing per-tool breakdown, savings summary, Credex branding, and email capture. Integrated Resend for transactional emails — users can now get their audit report sent to their inbox. Fixed multiple issues including Tailwind v4 compatibility bug, useState hook placement errors, and input sizing inconsistencies.
 
