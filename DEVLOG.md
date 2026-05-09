@@ -57,10 +57,11 @@ Create ARCHITECTURE.md with system diagram, PRICING_DATA.md , and PROMPTS.md
 
 **Hours worked:** 3
 
-**What I did:** Tested all 6 MVP features end to end on the live Vercel deployment. Verified Supabase is correctly storing audit records with unique IDs. Confirmed shareable URLs work — opening a share link shows the correct audit results without any personal information. Fixed environment variable issues between Codespaces and Vercel. Cleaned up codebase by removing auto-generated Codespaces files. Tested email report delivery via Resend.
+**What I did:** Tested all 6 MVP features end to end on the live Vercel deployment. Verified Supabase is correctly storing audit records with unique IDs. Confirmed shareable URLs work — opening a share link shows the correct audit results without any personal information. Fixed environment variable issues between Codespaces and Vercel. Cleaned up codebase by removing auto-generated Codespaces files. Tested email report delivery via Resend.Wrote GTM.md, and ARCHITECTURE.md. Spent time understanding business terminology like CAC, LTV, ARR, conversion funnel and lead generation — these are new concepts for me as a developer.
+
 
 **What I learned:** Environment variables in Codespaces and Vercel are completely separate and need to be added to both. Supabase free tier is very generous for a project like this. Testing on mobile revealed some UI improvements needed.
-
-**Blockers:** Resend free tier only sends to verified email addresses. Gemini API free tier quota was exhausted. Both handled with documented workarounds.
+Got an insight about bussiness world.
+**Blockers:** Resend free tier only sends to verified email addresses. Gemini API free tier quota was exhausted. Both handled with documented workarounds.Still getting comfortable with business terminology like ARR, CAC, LTV — had to look these up while writing ECONOMICS.md.
 
 **Plan for tomorrow:** Continue building and polishing.
