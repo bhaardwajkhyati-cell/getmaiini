@@ -1,78 +1,54 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { supabase } from "@/app/lib/supabase";
 import Link from "next/link";
 
-
-
-export default function Results() {
+export default function SharePage() {
+  const { id } = useParams();
   const [audit, setAudit] = useState(null);
-  const [email, setEmail] = useState("");
-  const [sending, setSending] = useState(false);
-  const [sent, setSent] = useState(false);
-  const [aiSummary, setAiSummary] = useState("");
-  const [shareId, setShareId] = useState("");
+  const [notFound, setNotFound] = useState(false);
+
   useEffect(() => {
-  const stored = localStorage.getItem("auditResult");
-  if (stored) {
-    const parsed = JSON.parse(stored);
-    setAudit(parsed);
-    fetchAISummary(parsed);
-    saveAudit(parsed);
-  }
-}, []);
+    async function fetchAudit() {
+      const { data, error } = await supabase
+        .from("audit")
+        .select("*")
+        .eq("id", id)
+        .single();
 
-  async function fetchAISummary(auditData) {
-  try {
-    const res = await fetch("/api/ai-summary", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ audit: auditData }),
-    });
-    const data = await res.json();
-    console.log("AI summary response:", data);
-    setAiSummary(data.summary);
-  } catch (e) {
-    console.error("AI summary error:", e);
-  }
-}
+      if (error || !data) {
+        setNotFound(true);
+        return;
+      }
 
-async function saveAudit(auditData) {
-  try {
-    const res = await fetch("/api/save-audit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ audit: auditData }),
-    });
-    const data = await res.json();
-    if (data.id) setShareId(data.id);
-  } catch (e) {
-    console.error("Save audit error:", e);
-  }
-}
-
-
-
-  async function sendReport() {
-    if (!email) return;
-    setSending(true);
-    try {
-      await fetch("/api/send-report", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, audit }),
+      setAudit({
+        results: data.results,
+        totalCurrentSpend: data.total_current_spend,
+        totalSavings: data.total_savings,
+        totalAnnualSavings: data.total_annual_savings,
+        isHighSavings: data.is_high_savings,
       });
-      setSent(true);
-    } catch (e) {
-      console.error(e);
     }
-    setSending(false);
-  }
+
+    if (id) fetchAudit();
+  }, [id]);
+
+  if (notFound) return (
+    <main className="min-h-screen bg-[#07071a] flex flex-col items-center justify-center gap-4">
+      <p className="text-green-400 text-lg">Audit not found.</p>
+      <Link href="/audit">
+        <button className="bg-green-700 text-white px-6 py-2 rounded-lg text-sm">
+          Run your own audit ↗
+        </button>
+      </Link>
+    </main>
+  );
 
   if (!audit) return (
     <main className="min-h-screen bg-[#07071a] flex items-center justify-center">
-      <p className="text-green-400">Loading your audit...</p>
+      <p className="text-green-400">Loading audit...</p>
     </main>
-    
   );
 
   return (
@@ -92,29 +68,35 @@ async function saveAudit(auditData) {
         ))}
       </div>
 
-      {/* Ambient glow */}
-      <div className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-green-500/5 rounded-full blur-3xl z-0 pointer-events-none" />
-
       {/* Navbar */}
       <nav className="relative z-10 flex justify-between items-center px-8 py-4 border-b border-green-900">
         <Link href="/">
           <span className="text-xl font-medium text-green-400 cursor-pointer">GetMaini</span>
         </Link>
         <Link href="/audit">
-          <button className="text-sm text-green-400 hover:text-green-300 transition-colors">← Edit audit</button>
+          <button className="bg-green-700 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,197,94,0.5)]">
+            Run your own audit ↗
+          </button>
         </Link>
       </nav>
 
       <section className="relative z-10 max-w-2xl mx-auto px-8 py-16">
 
+        {/* Badge */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-2 text-xs px-4 py-2 bg-green-900/30 border border-green-700/40 rounded-full text-green-400 mb-6">
+            ✦ Shared AI Spend Audit
+          </div>
+        </div>
+
         {/* Hero savings */}
         <div className="text-center mb-12">
-          <p className="text-sm text-green-400 uppercase tracking-widest mb-3">Your potential savings</p>
+          <p className="text-sm text-green-400 uppercase tracking-widest mb-3">Potential savings found</p>
           <div className="text-6xl font-medium text-green-400 mb-2">
             ${audit.totalSavings}<span className="text-2xl">/mo</span>
           </div>
           <div className="text-lg text-green-400">${audit.totalAnnualSavings} saved per year</div>
-          <div className="text-sm text-green-400 mt-2">Current spend: ${audit.totalCurrentSpend}/mo</div>
+          <div className="text-sm text-green-600 mt-2">Current spend: ${audit.totalCurrentSpend}/mo</div>
         </div>
 
         {/* Credex CTA for high savings */}
@@ -175,8 +157,7 @@ async function saveAudit(auditData) {
           </div>
         </div>
 
-
-        {/* Credex branding — always shown */}
+        {/* Credex branding */}
         <div style={{
           background: "rgba(34,197,94,0.03)",
           border: "1px solid rgba(34,197,94,0.15)",
@@ -193,71 +174,17 @@ async function saveAudit(auditData) {
           </a>
         </div>
 
-        {/* AI Summary */}
-        <div style={{
-          background: "rgba(255,255,255,0.02)",
-          border: "1px solid rgba(34,197,94,0.15)",
-          borderRadius: "1rem",
-          padding: "1.5rem",
-          marginBottom: "1.5rem",
-        }}>
-          <p className="text-sm text-green-400 uppercase tracking-widest mb-3">✦ AI Summary</p>
-          {aiSummary ? (
-            <p className="text-base text-green-300 leading-relaxed">{aiSummary}</p>
-          ) : (
-            <p className="text-base text-green-700">Generating your personalized summary...</p>
-          )}
-        </div>         
-
-        {/* Email capture */}
-        <div style={{
-          background: "rgba(255,255,255,0.02)",
-          border: "1px solid rgba(34,197,94,0.15)",
-          borderRadius: "1rem",
-          padding: "1.5rem",
-          marginBottom: "1.5rem",
-        }}>
-          <h3 className="text-base font-medium text-white mb-1">Get this report in your inbox</h3>
-          <p className="text-sm text-green-400 mb-4">We'll email you the full audit and notify you when new savings apply to your stack.</p>
-          <div className="flex gap-2">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@company.com"
-              className="flex-1 bg-white/[0.05] border border-green-500/60 rounded-lg px-3 py-2 text-base text-white placeholder-green-900 focus:outline-none focus:border-green-400"
-            />
-            <button
-              onClick={sendReport}
-              disabled={sending || sent}
-              className="bg-green-700 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-base transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,197,94,0.5)] disabled:opacity-50"
-            >
-              {sent ? "Sent ✓" : sending ? "Sending..." : "Send report"}
+        {/* Run own audit CTA */}
+        <div className="text-center">
+          <p className="text-sm text-green-600 mb-4">Want to audit your own AI spend?</p>
+          <Link href="/audit">
+            <button className="bg-green-700 hover:bg-green-600 text-white px-8 py-3 rounded-lg text-base font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]">
+              Run my free audit ↗
             </button>
-          </div>
+          </Link>
         </div>
 
-        {/* Share URL */}
-         <div className="flex items-center gap-3 bg-white/[0.02] border border-green-900/40 rounded-lg px-4 py-3">
-           <span className="text-sm text-green-500 font-mono flex-1">
-             {shareId ? `getmaiini.vercel.app/share/${shareId}` : "Generating link..."}
-           </span>
-           <button
-             onClick={() => navigator.clipboard.writeText(`https://getmaiini.vercel.app/share/${shareId}`)}
-             disabled={!shareId}
-             className="text-sm text-green-500 border border-green-800 px-3 py-1 rounded hover:border-green-500 transition-colors disabled:opacity-50"
-           >
-             Copy link
-           </button>
-         </div>
       </section>
-
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-12px); }
-        }
-      `}</style>
 
     </main>
   );
