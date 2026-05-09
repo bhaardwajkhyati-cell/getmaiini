@@ -52,3 +52,15 @@ Create ARCHITECTURE.md with system diagram, PRICING_DATA.md , and PROMPTS.md
 
 
 **Plan for tomorrow:** **Plan for tomorrow:** Continue building remaining features.
+
+## Day 4 — 2026-05-09
+
+**Hours worked:** 3
+
+**What I did:** Tested all 6 MVP features end to end on the live Vercel deployment. Verified Supabase is correctly storing audit records with unique IDs. Confirmed shareable URLs work — opening a share link shows the correct audit results without any personal information. Fixed environment variable issues between Codespaces and Vercel. Cleaned up codebase by removing auto-generated Codespaces files. Tested email report delivery via Resend.
+
+**What I learned:** Environment variables in Codespaces and Vercel are completely separate and need to be added to both. Supabase free tier is very generous for a project like this. Testing on mobile revealed some UI improvements needed.
+
+**Blockers:** Resend free tier only sends to verified email addresses. Gemini API free tier quota was exhausted. Both handled with documented workarounds.
+
+**Plan for tomorrow:** Continue building and polishing.
