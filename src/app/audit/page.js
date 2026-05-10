@@ -115,7 +115,7 @@ export default function Audit() {
 
           {/* Tool rows */}
           <div className="mb-6">
-            <div className="grid grid-cols-3 gap-3 mb-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3 items-center">
               <span className="text-xs text-green-700 uppercase tracking-widest">Tool</span>
               <span className="text-xs text-green-700 uppercase tracking-widest">Plan</span>
               <span className="text-xs text-green-700 uppercase tracking-widest">Seats</span>
@@ -149,7 +149,7 @@ export default function Audit() {
                 <div className="absolute right-3 top-1/2 -translate-y-1/2 text-green-500 pointer-events-none text-xs">▼</div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col md:flex-row gap-2">
                   <Counter
                     value={entry.seats}
                     onChange={(val) => updateTool(index, "seats", val)}

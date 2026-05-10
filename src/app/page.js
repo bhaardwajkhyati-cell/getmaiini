@@ -83,7 +83,7 @@ export default function Home() {
       {/* How it works */}
       <section className="relative z-10 px-8 py-20 border-t border-green-900/40 max-w-2xl mx-auto w-full">
         <p className="text-xs text-green-800 uppercase tracking-widest mb-8">How it works</p>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             { step: "01", title: "Enter your tools", desc: "Tell us which AI tools you pay for, which plan, and how many seats." },
             { step: "02", title: "Get your audit", desc: "We instantly analyse your spend — what to cut, downgrade, or switch." },
