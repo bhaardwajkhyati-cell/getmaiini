@@ -65,3 +65,15 @@ Got an insight about bussiness world.
 **Blockers:** Resend free tier only sends to verified email addresses. Gemini API free tier quota was exhausted. Both handled with documented workarounds.Still getting comfortable with business terminology like ARR, CAC, LTV — had to look these up while writing ECONOMICS.md.
 
 **Plan for tomorrow:** Continue building and polishing.
+
+## Day 5 — 2026-05-10
+
+**Hours worked:** 3
+
+**What I did:** Fixed mobile responsiveness across all three pages — landing page, audit form and results page. Fixed navbar button size on mobile, hero font size, footer overlap, how it works section stacking, audit form tool/plan/seats columns stacking vertically on mobile, email input and send button stacking, and share URL word break. Renamed primary use case label to use on the audit form. Wrote GTM.md, ECONOMICS.md, REFLECTION.md and ARCHITECTURE.md documentation files.
+
+**What I learned:** Mobile responsiveness requires thinking about every section separately — what works on desktop often breaks completely on mobile. Tailwind's responsive prefixes like md: make it easy to have different layouts for mobile and desktop. wordBreak style is needed for long URLs that overflow on small screens.
+
+**Blockers:** The audit form tool rows were still showing in 3 columns on mobile even after fixes — still needs one more fix tomorrow. Column headers showing on mobile despite hidden md:grid class.
+
+**Plan for tomorrow:** Continue building and polishing.
