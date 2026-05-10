@@ -237,19 +237,21 @@ async function saveAudit(auditData) {
           </div>
         </div>
 
-        {/* Share URL */}
-         <div className="flex items-center gap-3 bg-white/[0.02] border border-green-900/40 rounded-lg px-4 py-3">
-            <span className="text-sm text-green-500 font-mono flex-1">
-             {shareId ? `getmaiini.vercel.app/share/${shareId}` : "Generating link..."}
-           </span>
-           <button
-             onClick={() => navigator.clipboard.writeText(`https://getmaiini.vercel.app/share/${shareId}`)}
-             disabled={!shareId}
-             className="text-sm text-green-500 border border-green-800 px-3 py-1 rounded hover:border-green-500 transition-colors disabled:opacity-50"
-           >
-             Copy link
-           </button>
-         </div>
+        
+         {/* Share URL */}
+        <div className="bg-white/[0.02] border border-green-900/40 rounded-lg px-4 py-3">
+          <p className="text-xs text-green-700 uppercase tracking-widest mb-2">Share your audit</p>
+          <p className="text-sm text-green-500 font-mono mb-3" style={{wordBreak: "break-all"}}>
+            {         shareId ? `getmaiini.vercel.app/share/${shareId}` : "Generating link..."}
+          </p>
+          <button
+            onClick={() => navigator.clipboard.writeText(`https://getmaiini.vercel.app/share/${shareId}`)}
+            disabled={!shareId}
+            className="w-full text-sm text-green-500 border border-green-800 px-3 py-2 rounded hover:border-green-500 transition-colors disabled:opacity-50"
+          >
+            Copy link
+          </button>
+        </div>
       </section>
 
       <style>{`
