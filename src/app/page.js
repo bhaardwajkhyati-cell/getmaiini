@@ -22,9 +22,9 @@ export default function Home() {
       </div>
 
       {/* Navbar */}
-      <nav className="relative z-10 flex justify-between items-center px-8 py-4 border-b border-green-900">
+      <nav className="relative z-10 flex justify-between items-center px-4 py-3 border-b border-green-900">
         <span className="text-xl font-medium text-green-400">GetMaini</span>
-        <Link href = "/audit"><button className="bg-green-700 hover:bg-green-600 text-white px-5 py-2 rounded-lg text-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]">
+        <Link href = "/audit"><button className="bg-green-700 hover:bg-green-600 text-white px-3 py-2 rounded-lg text-xs md:text-sm md:px-5 whitespace-nowrap transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]">
           Audit my spend ↗
         </button></Link>
       </nav>
@@ -34,10 +34,10 @@ export default function Home() {
         <div className="inline-flex items-center gap-2 text-xs px-4 py-2 bg-green-900/40 border border-green-700/40 rounded-full text-green-300 mb-8">
           ✦ Free AI spend audit — no login needed
         </div>
-        <h1 className="text-5xl font-medium leading-tight mb-6 text-white">
+        <section className="relative z-10 text-center px-4 py-16 max-w-3xl mx-auto">
           Find out where your <br />
           <span className="text-green-400">AI budget is leaking</span>
-        </h1>
+        </section>
         <p className="text-lg text-green-200/60 leading-relaxed mb-10 max-w-lg mx-auto">
           Most startups overpay on AI tools without realising it. Get a free
           2-minute audit — see exactly what to cut, downgrade, or switch.
