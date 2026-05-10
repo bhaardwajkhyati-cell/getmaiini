@@ -151,8 +151,8 @@ export default function Audit() {
                 <div className="absolute right-3 top-1/2 -translate-y-1/2 text-green-500 pointer-events-none text-xs">▼</div>
                 </div>
 
-                <div className="flex flex-row gap-2 items-center">
-                  <label className="text-xs text-green-700 uppercase tracking-widest mb-1 block md:hidden">Seats</label>
+                <div className="flex flex-col gap-1">
+                  <label className="text-xs text-green-700 uppercase tracking-widest block md:hidden">Seats</label>
                   <Counter
                     value={entry.seats}
                     onChange={(val) => updateTool(index, "seats", val)}
