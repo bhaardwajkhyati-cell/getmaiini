@@ -51,22 +51,22 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative z-10 px-8 pb-20 max-w-2xl mx-auto">
-        <div className="grid grid-cols-3 gap-6">
-          <div className="bg-white/[0.03] border border-green-900/50 rounded-xl p-6 text-center">
-            <div className="text-3xl font-medium text-green-400">$480</div>
-            <div className="text-xs text-green-900 mt-2">avg monthly savings</div>
+      <section className="relative z-10 px-4 pb-16 max-w-lg mx-auto w-full">
+        <div className="grid grid-cols-3 gap-3">
+          <div className="bg-white/[0.03] border border-green-900/50 rounded-xl p-4 text-center">
+            <div className="text-xl font-medium text-green-400">$480</div>
+            <div className="text-xs text-green-800 mt-1">avg monthly savings</div>
           </div>
-          <div className="bg-white/[0.03] border border-green-900/50 rounded-xl p-6 text-center">
-            <div className="text-3xl font-medium text-green-400">8</div>
-            <div className="text-xs text-green-900 mt-2">AI tools audited</div>
+          <div className="bg-white/[0.03] border border-green-900/50 rounded-xl p-4 text-center">
+            <div className="text-xl font-medium text-green-400">8</div>
+            <div className="text-xs text-green-800 mt-1">AI tools audited</div>
           </div>
-          <div className="bg-white/[0.03] border border-green-900/50 rounded-xl p-6 text-center">
-            <div className="text-3xl font-medium text-green-400">2 min</div>
-            <div className="text-xs text-green-900 mt-2">to complete audit</div>
+          <div className="bg-white/[0.03] border border-green-900/50 rounded-xl p-4 text-center">
+            <div className="text-xl font-medium text-green-400">2 min</div>
+            <div className="text-xs text-green-800 mt-1">to complete audit</div>
           </div>
         </div>
-      </section>
+      </section>      
 
       {/* Tools Section */}
       <section className="relative z-10 px-8 py-20 border-t border-green-900/40 max-w-2xl mx-auto w-full">
