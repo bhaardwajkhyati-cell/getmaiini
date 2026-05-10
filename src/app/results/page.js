@@ -219,7 +219,7 @@ async function saveAudit(auditData) {
         }}>
           <h3 className="text-base font-medium text-white mb-1">Get this report in your inbox</h3>
           <p className="text-sm text-green-400 mb-4">We'll email you the full audit and notify you when new savings apply to your stack.</p>
-          <div className="flex gap-2">
+          <div className="flex flex-col gap-2">
             <input
               type="email"
               value={email}
@@ -230,7 +230,7 @@ async function saveAudit(auditData) {
             <button
               onClick={sendReport}
               disabled={sending || sent}
-              className="bg-green-700 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-base transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,197,94,0.5)] disabled:opacity-50"
+              className=" w-full bg-green-700 hover:bg-green-600 text-white px-4 py-3 rounded-lg text-base transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,197,94,0.5)] disabled:opacity-50"
             >
               {sent ? "Sent ✓" : sending ? "Sending..." : "Send report"}
             </button>
@@ -239,7 +239,7 @@ async function saveAudit(auditData) {
 
         {/* Share URL */}
          <div className="flex items-center gap-3 bg-white/[0.02] border border-green-900/40 rounded-lg px-4 py-3">
-           <span className="text-sm text-green-500 font-mono flex-1">
+            <span className="text-sm text-green-500 font-mono flex-1">
              {shareId ? `getmaiini.vercel.app/share/${shareId}` : "Generating link..."}
            </span>
            <button
