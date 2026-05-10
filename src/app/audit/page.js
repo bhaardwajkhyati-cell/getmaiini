@@ -183,7 +183,7 @@ export default function Audit() {
               <Counter value={teamSize} onChange={setTeamSize} />
             </div>
             <div>
-              <label className="text-xs text-green-700 uppercase tracking-widest mb-2 block">Primary use</label>
+              <label className="text-xs text-green-700 uppercase tracking-widest mb-2 block">Use</label>
               <div className="relative">
               <select
                 value={useCase}
