@@ -115,15 +115,16 @@ export default function Audit() {
 
           {/* Tool rows */}
           <div className="mb-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
               <span className="text-xs text-green-700 uppercase tracking-widest">Tool</span>
               <span className="text-xs text-green-700 uppercase tracking-widest">Plan</span>
               <span className="text-xs text-green-700 uppercase tracking-widest">Seats</span>
             </div>
 
             {selectedTools.map((entry, index) => (
-              <div key={index} className="grid grid-cols-3 gap-3 mb-3 items-center">
+              <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3 items-center">
                <div className = "relative">
+                <label className="text-xs text-green-700 uppercase tracking-widest mb-1 block md:hidden">Tool</label>
                 <select
                   value={entry.toolId}
                   onChange={(e) => updateTool(index, "toolId", e.target.value)}
@@ -137,6 +138,7 @@ export default function Audit() {
                 </div>
 
                <div className="relative">
+                <label className="text-xs text-green-700 uppercase tracking-widest mb-1 block md:hidden">Plan</label>
                 <select
                   value={entry.plan}
                   onChange={(e) => updateTool(index, "plan", e.target.value)}
@@ -150,6 +152,7 @@ export default function Audit() {
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-2">
+                  <label className="text-xs text-green-700 uppercase tracking-widest mb-1 block md:hidden">Seats</label>
                   <Counter
                     value={entry.seats}
                     onChange={(val) => updateTool(index, "seats", val)}

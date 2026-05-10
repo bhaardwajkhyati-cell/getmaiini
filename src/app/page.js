@@ -34,10 +34,10 @@ export default function Home() {
         <div className="inline-flex items-center gap-2 text-xs px-4 py-2 bg-green-900/40 border border-green-700/40 rounded-full text-green-300 mb-8">
           ✦ Free AI spend audit — no login needed
         </div>
-        <section className="relative z-10 text-center px-4 py-16 max-w-3xl mx-auto">
+        <h1 className="text-3xl md:text-5xl font-medium leading-tight mb-6 text-white">
           Find out where your <br />
           <span className="text-green-400">AI budget is leaking</span>
-        </section>
+        </h1>        
         <p className="text-lg text-green-200/60 leading-relaxed mb-10 max-w-lg mx-auto">
           Most startups overpay on AI tools without realising it. Get a free
           2-minute audit — see exactly what to cut, downgrade, or switch.
@@ -108,7 +108,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 px-8 py-5 border-t border-green-900/40 flex justify-between items-center">
+      <footer className="relative z-10 px-4 py-5 border-t border-green-900/40 flex flex-col md:flex-row justify-between items-center gap-2 text-center">
         <span className="text-sm font-medium text-green-400">GetMaini</span>
         <span className="text-xs text-green-900">A free tool by Credex · credex.rocks</span>
       </footer>
