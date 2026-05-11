@@ -77,3 +77,30 @@ Got an insight about bussiness world.
 **Blockers:** The audit form tool rows were still showing in 3 columns on mobile even after fixes — still needs one more fix tomorrow. Column headers showing on mobile despite hidden md:grid class.
 
 **Plan for tomorrow:** Continue building and polishing.
+
+
+## Day 6 — 2026-05-11
+
+**Hours worked:** 3
+
+**What I did:**
+
+Reaching college friends out who use AI tools for USER_INTERVIEWS.md — messaged one person 
+so far to schedule a 10-15 minute conversation about their AI 
+tool usage and spending habits. Waiting for a response.
+
+**What I learned:**
+Cold outreach takes time even with people you know. Being specific 
+about what you need (just 10 minutes, talking about AI tools) 
+helps make the ask feel smaller.
+
+**Blockers / what I'm stuck on:**
+Have not received a response from the college friend I messaged yet. Need to message more people tomorrow to ensure I get all 
+3 interviews done before the deadline.
+
+**Plan for tomorrow:**
+Follow up and message at least 5 more college friends to secure 
+3 interviews. Complete USER_INTERVIEWS.md once conversations happen.
+Create all remaining markdown files — 
+ECONOMICS.md, PRICING_DATA.md, LANDING_COPY.md, 
+METRICS.md, TESTS.md.
