@@ -23,7 +23,7 @@ export default function Home() {
 
       {/* Navbar */}
       <nav className="relative z-10 flex justify-between items-center px-4 py-3 border-b border-green-900">
-        <span className="text-xl font-medium text-green-400">GetMaini</span>
+        <span className="text-xl font-medium text-green-400">GetMaiini</span>
         <Link href = "/audit"><button className="bg-green-700 hover:bg-green-600 text-white px-3 py-2 rounded-lg text-xs md:text-sm md:px-5 whitespace-nowrap transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]">
           Audit my spend ↗
         </button></Link>
@@ -109,7 +109,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="relative z-10 px-4 py-5 border-t border-green-900/40 flex flex-col md:flex-row justify-between items-center gap-2 text-center">
-        <span className="text-sm font-medium text-green-400">GetMaini</span>
+        <span className="text-sm font-medium text-green-400">Getmaiini</span>
         <span className="text-xs text-green-900">A free tool by Credex · credex.rocks</span>
       </footer>
 

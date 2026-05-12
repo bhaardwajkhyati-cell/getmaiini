@@ -98,7 +98,7 @@ async function saveAudit(auditData) {
       {/* Navbar */}
       <nav className="relative z-10 flex justify-between items-center px-8 py-4 border-b border-green-900">
         <Link href="/">
-          <span className="text-xl font-medium text-green-400 cursor-pointer">GetMaini</span>
+          <span className="text-xl font-medium text-green-400 cursor-pointer">Getmaiini</span>
         </Link>
         <Link href="/audit">
           <button className="text-sm text-green-400 hover:text-green-300 transition-colors">← Edit audit</button>
@@ -165,7 +165,7 @@ async function saveAudit(auditData) {
                   tool.status === "optimal"
                     ? "bg-green-900/20 text-green-400"
                     : tool.status === "warning"
-                    ? "bg-yellow-900/20 text-yellow-500"
+                    ? "bg-green-900/20 text-green-500"
                     : "bg-green-900/30 text-green-400"
                 }`}>
                   {tool.recommendation}
