@@ -165,8 +165,8 @@ async function saveAudit(auditData) {
                   tool.status === "optimal"
                     ? "bg-green-900/20 text-green-400"
                     : tool.status === "warning"
-                    ? "bg-green-900/20 text-green-500"
-                    : "bg-green-900/30 text-green-400"
+                    ? "bg-yellow-900/20 text-green-500"
+                    : "bg-yellow-900/30 text-green-400"
                 }`}>
                   {tool.recommendation}
                 </div>
