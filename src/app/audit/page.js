@@ -151,19 +151,21 @@ export default function Audit() {
                 <div className="absolute right-3 top-1/2 -translate-y-1/2 text-green-500 pointer-events-none text-xs">▼</div>
                 </div>
 
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs text-green-700 uppercase tracking-widest block md:hidden">Seats</label>
-                  <Counter
-                    value={entry.seats}
-                    onChange={(val) => updateTool(index, "seats", val)}
-                  />
-                  {selectedTools.length > 1 && (
-                    <button
-                      onClick={() => removeTool(index)}
-                      className="text-green-900 hover:text-red-400 text-lg transition-colors flex-shrink-0"
-                    >✕</button>
-                  )}
-                </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs text-green-700 uppercase tracking-widest block md:hidden">Seats</label>
+              <div className="flex items-center gap-2">
+                <Counter
+                  value={entry.seats}
+                  onChange={(val) => updateTool(index, "seats", val)}
+                />
+                {selectedTools.length > 1 && (
+                  <button
+                    onClick={() => removeTool(index)}
+                    className="text-green-900 hover:text-red-400 text-lg transition-colors flex-shrink-0"
+                  >✕</button>
+                )}
+              </div>
+            </div>            
 
               </div>
             ))}
