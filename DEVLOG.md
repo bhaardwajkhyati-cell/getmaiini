@@ -101,6 +101,31 @@ Have not received a response from the college friend I messaged yet. Need to mes
 **Plan for tomorrow:**
 Follow up and message at least 5 more college friends to secure 
 3 interviews. Complete USER_INTERVIEWS.md once conversations happen.
-Create all remaining markdown files — 
-ECONOMICS.md, PRICING_DATA.md, LANDING_COPY.md, 
-METRICS.md, TESTS.md.
+
+## Day 7 — 2026-05-12
+
+**Hours worked:** 3
+
+**What I did:**
+Created and committed all remaining required markdown files —
+PRICING_DATA.md, LANDING_COPY.md, METRICS.md, PROMPTS.md,
+and USER_INTERVIEWS.md. Conducted user interviews with college
+friends and documented their responses. All core documentation
+is now complete.
+
+**What I learned:**
+User interviews gave unexpected insights into how people
+actually think about AI tool spending — most do not track
+it carefully and were surprised by how much they spend.
+Writing PRICING_DATA.md forced me to verify every number
+against official vendor pages which took longer than expected.
+
+**Blockers / what I'm stuck on:**
+TESTS.md is documented but actual Jest test files are not
+yet implemented in the codebase. This is a gap in the
+submission.
+
+**Plan for tomorrow:**
+Final submission day. Check all files are at repo root,
+verify getmaiini.vercel.app is working, submit Google Form
+before May 13 deadline.
