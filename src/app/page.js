@@ -109,7 +109,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="relative z-10 px-4 py-5 border-t border-green-900/40 flex flex-col md:flex-row justify-between items-center gap-2 text-center">
-        <span className="text-sm font-medium text-green-400">Getmaiini</span>
+        <span className="text-sm font-medium text-green-400">GetMaiini</span>
         <span className="text-xs text-green-900">A free tool by Credex · credex.rocks</span>
       </footer>
 
