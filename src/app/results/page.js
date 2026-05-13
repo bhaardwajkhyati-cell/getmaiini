@@ -98,7 +98,7 @@ async function saveAudit(auditData) {
       {/* Navbar */}
       <nav className="relative z-10 flex justify-between items-center px-8 py-4 border-b border-green-900">
         <Link href="/">
-          <span className="text-xl font-medium text-green-400 cursor-pointer">Getmaiini</span>
+          <span className="text-xl font-medium text-green-400 cursor-pointer">GetMaiini</span>
         </Link>
         <Link href="/audit">
           <button className="text-sm text-green-400 hover:text-green-300 transition-colors">← Edit audit</button>
