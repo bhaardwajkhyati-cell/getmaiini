@@ -84,7 +84,7 @@ export function runAudit(selectedTools, teamSize, useCase) {
     }
 
     // Rule 2: Paying for more seats than team size
-    else if (entry.seats > teamSize) {
+    else if (entry.seats > teamSize && pricePerSeat>0) {
       const newSpend = pricePerSeat * teamSize;
       savings = currentSpend - newSpend;
       recommendation = `You have ${entry.seats} seats but only ${teamSize} team members. Reduce to ${teamSize} seats and save $${savings}/mo.`;
