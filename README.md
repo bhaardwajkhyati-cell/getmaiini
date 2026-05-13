@@ -7,8 +7,6 @@ discounted AI credits.
 
 ## Screenshots
 
-> Add screenshots or Loom link here before submitting
-
 ## Live URL
 
 https://getmaiini.vercel.app
