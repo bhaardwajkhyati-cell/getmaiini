@@ -7,6 +7,15 @@ discounted AI credits.
 
 ## Screenshots
 
+Landing page: https://github.com/bhaardwajkhyati-cell/getmaiini/blob/main/public/screenshots/landing%20page.png
+
+Audit page: https://github.com/bhaardwajkhyati-cell/getmaiini/blob/main/public/screenshots/audit%20page.png
+
+Result: https://github.com/bhaardwajkhyati-cell/getmaiini/blob/main/public/screenshots/Result.png
+
+AI-Summary: https://github.com/bhaardwajkhyati-cell/getmaiini/blob/main/public/screenshots/AISummary.png
+
+
 ## Live URL
 
 https://getmaiini.vercel.app
