@@ -36,12 +36,12 @@ export default function Results() {
   }
 }
 
-async function saveAudit(auditData) {
+async function saveAudit(auditData, userEmail) {
   try {
     const res = await fetch("/api/save-audit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ audit: auditData }),
+      body: JSON.stringify({ audit: auditData, email: userEmail || null }),
     });
     const data = await res.json();
     if (data.id) setShareId(data.id);
@@ -61,6 +61,7 @@ async function saveAudit(auditData) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, audit }),
       });
+      await saveAudit(audit,email)
       setSent(true);
     } catch (e) {
       console.error(e);
