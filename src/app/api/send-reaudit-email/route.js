@@ -1,3 +1,4 @@
+import { Ga_Maamli } from 'next/font/google';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -11,8 +12,8 @@ export async function POST(request) {
     ).join('');
 
     const { error } = await resend.emails.send({
-      from: 'bhaardwajkhyati@gmail.com',
-      to: email,
+      from: 'onboarding@resend.dev',
+      to: 'bhaardwajkhyati@gmail.com',
       subject: '⚠️ Your AI tool audit is outdated — pricing changed',
       html: `
         <h2>Pricing has changed for tools in your audit</h2>
