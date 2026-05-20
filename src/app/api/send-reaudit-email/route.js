@@ -11,7 +11,7 @@ export async function POST(request) {
     ).join('');
 
     const { error } = await resend.emails.send({
-      from: 'onboarding@resend.dev',
+      from: 'bhaardwajkhyati@gmail.com',
       to: email,
       subject: '⚠️ Your AI tool audit is outdated — pricing changed',
       html: `
