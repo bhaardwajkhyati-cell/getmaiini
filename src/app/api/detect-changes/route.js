@@ -81,7 +81,7 @@ export async function POST(request) {
 
             <p style="color:#aaa;">Your previous savings estimate may no longer be accurate.</p>
             
-            <a href="https://getmaiini.vercel.app/audit" 
+            <a href="<a href="https://getmaiini.vercel.app/reaudit?id=${audit.id}"" 
                style="display:inline-block;background:#22c55e;color:#000;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:500;margin-top:16px;">
               Re-run my audit with new pricing ↗
             </a>
