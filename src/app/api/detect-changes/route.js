@@ -4,7 +4,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const CURRENT_PRICING = {
-  cursor: { "Hobby (Free)": 0, "Pro ($20/seat)": 75, "Business ($40/seat)": 40, "Enterprise": 40 },
+  cursor: { "Hobby (Free)": 0, "Pro ($20/seat)": 20, "Business ($40/seat)": 40, "Enterprise": 40 },
   copilot: { "Individual ($10/seat)": 10, "Business ($19/seat)": 19, "Enterprise ($39/seat)": 39 },
   claude: { "Free": 0, "Pro ($20/seat)": 20, "Max ($100/seat)": 100, "Team ($30/seat)": 30, "Enterprise": 30, "API Direct": 0 },
   chatgpt: { "Free": 0, "Plus ($20/seat)": 20, "Team ($30/seat)": 30, "Enterprise": 30, "API Direct": 0 },
