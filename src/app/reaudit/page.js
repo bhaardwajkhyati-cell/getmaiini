@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { supabase } from "@/app/lib/supabase";
 import Link from "next/link";
@@ -15,7 +15,7 @@ const CURRENT_PRICING = {
   windsurf: { "Free": 0, "Pro ($15/seat)": 15, "Teams ($35/seat)": 35 },
 };
 
-export default function ReauditPage() {
+function ReauditPage() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const [oldAudit, setOldAudit] = useState(null);
@@ -34,7 +34,6 @@ export default function ReauditPage() {
 
       setOldAudit(data);
 
-      // Detect changes between snapshot and current pricing
       const snapshot = data.pricing_snapshot;
       if (!snapshot) return;
 
@@ -72,22 +71,11 @@ export default function ReauditPage() {
     </main>
   );
 
-  const oldSavings = oldAudit.total_savings;
-  const newSavings = oldAudit.results?.reduce((acc, tool) => {
-    const toolId = tool.name?.toLowerCase();
-    const newToolPricing = CURRENT_PRICING[toolId];
-    if (!newToolPricing) return acc + tool.savings;
-    const newPrice = newToolPricing[tool.plan] ?? tool.currentSpend / tool.seats;
-    const newSpend = newPrice * tool.seats;
-    return acc + Math.max(0, newSpend - (tool.currentSpend - tool.savings));
-  }, 0);
-
-  const savingsDelta = newSavings - oldSavings;
+  const savingsDelta = 0;
 
   return (
     <main className="min-h-screen bg-[#07071a] text-white relative overflow-hidden">
 
-      {/* Stars */}
       <div className="fixed inset-0 z-0">
         {[...Array(80)].map((_, i) => (
           <div key={i} className="absolute rounded-full bg-green-300 opacity-20"
@@ -101,7 +89,6 @@ export default function ReauditPage() {
         ))}
       </div>
 
-      {/* Navbar */}
       <nav className="relative z-10 flex justify-between items-center px-8 py-4 border-b border-green-900">
         <Link href="/"><span className="text-xl font-medium text-green-400 cursor-pointer">GetMaiini</span></Link>
         <Link href="/audit">
@@ -111,22 +98,15 @@ export default function ReauditPage() {
 
       <section className="relative z-10 max-w-3xl mx-auto px-8 py-16">
 
-        {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 text-xs px-4 py-2 bg-green-900/30 border border-green-700/40 rounded-full text-green-400 mb-6">
             ⚡ Pricing has changed — here's your updated audit
           </div>
-          {savingsDelta !== 0 && (
-            <div className={`text-2xl font-medium mb-2 ${savingsDelta > 0 ? 'text-green-400' : 'text-yellow-400'}`}>
-              {savingsDelta > 0 ? `+$${savingsDelta.toFixed(0)} more savings available` : `$${Math.abs(savingsDelta).toFixed(0)} less savings than before`}
-            </div>
-          )}
           {changes.length === 0 && (
             <p className="text-green-400">No pricing changes detected — your audit is still accurate.</p>
           )}
         </div>
 
-        {/* Pricing changes diff */}
         {changes.length > 0 && (
           <div className="mb-10">
             <p className="text-sm text-green-400 uppercase tracking-widest mb-4">What changed</p>
@@ -156,12 +136,10 @@ export default function ReauditPage() {
           </div>
         )}
 
-        {/* Side by side diff */}
         <div className="mb-10">
           <p className="text-sm text-green-400 uppercase tracking-widest mb-4">Audit comparison</p>
           <div className="grid grid-cols-2 gap-4">
 
-            {/* Old audit */}
             <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,100,100,0.2)", borderRadius: "1rem", padding: "1.25rem" }}>
               <p className="text-xs text-red-400 uppercase tracking-widest mb-4">Previous audit</p>
               <div className="text-3xl font-medium text-red-400 mb-1">${oldAudit.total_savings}<span className="text-base">/mo</span></div>
@@ -177,7 +155,6 @@ export default function ReauditPage() {
               ))}
             </div>
 
-            {/* New audit */}
             <div style={{ background: "rgba(34,197,94,0.03)", border: "1px solid rgba(34,197,94,0.3)", borderRadius: "1rem", padding: "1.25rem" }}>
               <p className="text-xs text-green-400 uppercase tracking-widest mb-4">Updated audit</p>
               <div className="text-3xl font-medium text-green-400 mb-1">${oldAudit.total_savings}<span className="text-base">/mo</span></div>
@@ -202,7 +179,6 @@ export default function ReauditPage() {
           </div>
         </div>
 
-        {/* CTA */}
         <div className="text-center">
           <Link href="/audit">
             <button className="bg-green-700 hover:bg-green-600 text-white px-8 py-3 rounded-lg text-base font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]">
@@ -213,5 +189,17 @@ export default function ReauditPage() {
 
       </section>
     </main>
+  );
+}
+
+export default function ReauditPageWrapper() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-[#07071a] flex items-center justify-center">
+        <p className="text-green-400">Loading audit...</p>
+      </main>
+    }>
+      <ReauditPage />
+    </Suspense>
   );
 }
