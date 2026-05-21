@@ -1,4 +1,4 @@
-cat > ROUND2_DEVLOG.md << 'EOF'
+
 ## 2026-05-20 11:00 — Start
 Read assignment. Planning: audit storage, detect-changes, email, diff view.
 
@@ -25,4 +25,3 @@ saveAudit now called with email when user clicks Send Report.
 
 ## 2026-05-21 00:15 — End to end test passed
 Full flow working: audit → save → detect change → email → diff view.
-EOF
