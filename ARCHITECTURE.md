@@ -4,7 +4,7 @@
 
 ```mermaid
 graph TD
-    A[User visits GetMaini] --> B[Landing Page /]
+    A[User visits GetMaiini] --> B[Landing Page /]
     B --> C[Audit Form /audit]
     C --> D[Audit Engine auditEngine.js]
     D --> E[Results Page /results]
