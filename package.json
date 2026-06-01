@@ -2,12 +2,13 @@
   "name": "getmaiini",
   "version": "0.1.0",
   "private": true,
+  "type" : "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest --experimental-vm-modules"
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
