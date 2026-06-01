@@ -2,7 +2,7 @@
   "name": "getmaiini",
   "version": "0.1.0",
   "private": true,
-  "type" : "module",
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@jest/globals": "^30.4.1",
-    "@tailwindcss/postcss": "^4",
     "autoprefixer": "^10.5.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.5",
@@ -32,8 +31,12 @@
   "jest": {
     "testEnvironment": "node",
     "transform": {},
-    "moduleFileExtensions": ["js", "mjs"],
-    "testMatch": ["**/*.test.js"]
-    
+    "moduleFileExtensions": [
+      "js",
+      "mjs"
+    ],
+    "testMatch": [
+      "**/*.test.js"
+    ]
   }
 }
